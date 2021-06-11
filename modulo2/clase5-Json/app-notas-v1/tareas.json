@@ -1,0 +1,15 @@
+[
+  {
+    "titulo":"terminar el ejercicio de la calculadora",
+    "estado":"terminado"
+  },
+  {
+      "titulo":"pasear al perro",
+      "estado":"pendiente"
+
+  },
+  {
+     "titulo":"aprender a programar",
+     "estado":"en progreso"
+  }
+] 
