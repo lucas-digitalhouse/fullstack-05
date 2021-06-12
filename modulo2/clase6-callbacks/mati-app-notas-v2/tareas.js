@@ -19,9 +19,12 @@ let funcionesDeTareas = {
         this.escribirJSON(tareas) // Escribo el archivo de tareas utilizando la funcion correspondiente
     },
 
-    leerPorEstado: function (estado) {
-        // Recuperar las tareas usando la funcion corespondiente
-        // Utilizando el metodo de arrrays "filter" debo filtrar las tareas y retornar las tareas filtradas
+    filtrarPorEstado: function (parametroEstado) {
+        let arrayDeTareas = this.leerJSON(); // Recuperar las tareas usando la funcion corespondiente
+        let tareasFiltradas = arrayDeTareas.filter(function(todasLasTareas){ // Utilizando el metodo de arrrays "filter" debo filtrar las tareas y retornar las tareas filtrada
+            return todasLasTareas.estado == parametroEstado;
+        })
+        return tareasFiltradas ; 
     }
 }
 

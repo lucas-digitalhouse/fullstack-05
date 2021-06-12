@@ -28,11 +28,18 @@ switch (argumento) {
         console.log("se agrego el objeto " + process.argv[3] + " al archivo tareas.json");
         break;
 
-
     // Escribir el caso en que se utilice "filtrar"
         // Recuperar cual es el estado que se necesita filtrar usando "process.argv[]"
         // Utilizar el metodo correspondiente para filtrar una tarea por estado
         // Una vez filtradas, recorrer la nueva colección y mostrar por consola las tareas
+
+    case 'filtrar':
+        let filtro = process.argv[3];
+        tareasFiltradas = funcionesDeTareas.filtrarPorEstado(filtro);
+        tareasFiltradas.forEach(function(tareas){
+            console.log(tareas); 
+        });
+        break;
 
     default:
         console.log('No entiendo que quieres hacer');
