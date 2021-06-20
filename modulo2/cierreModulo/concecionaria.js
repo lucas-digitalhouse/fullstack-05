@@ -15,8 +15,47 @@ const concesionaria = {
        }
 
     },
-   venderAutos: function (){},
+   venderAuto: function(patente){
+    let autoEncontrado = this.buscarAuto(patente)
+       if (patente == autoEncontrado.patente){
+        autoEncontrado.vendido = true;
+         return autoEncontrado;
+        }
+    },
+    autosParaLaVenta: function(){
+        let autosVendibles = this.autos
+        let autosOk = autosVendibles.filter(function(cadaAuto){
+            return cadaAuto.vendido == false
+        });
+        return autosOk
+    },
+    autosNuevos: function(){
+        let autosVendibles = this.autosParaLaVenta()
+        let autos0km = autosVendibles.filter(function(auto){
+             return auto.km < 100
+         });
+         console.log(autos0km)
+         return autos0km
+    },
+    listaDeVentas: function(){
+        let autosOk = this.autos
+        let autosVendidos = autosOk.filter(function(cadaAuto){
+            return cadaAuto.vendido == true
+        });
+        let lista = []
+        autosVendidos.forEach(function(auto){
+            lista.push(auto.precio)
+        });
+        console.log(lista)
+        return lista
+    },
+
    autos: autos,
 };
 
-console.log(concesionaria.buscarAuto("JJK116"))
+
+concesionaria.venderAuto("JJK116")
+//console.log(autos)
+//concesionaria.autosParaLaVenta()
+
+concesionaria.listaDeVentas()
