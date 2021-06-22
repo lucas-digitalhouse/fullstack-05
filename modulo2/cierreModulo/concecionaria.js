@@ -1,4 +1,5 @@
 let autos = require ("./autos.js")
+let persona = require ("./persona.js")
 
 const concesionaria = {
     // es posible crear la funcionalidad buscarAuto que reciba por parámetro 
@@ -11,9 +12,7 @@ const concesionaria = {
        if (autoBuscado != undefined){
        return autoBuscado
        } else { return null
-
        }
-
     },
    venderAuto: function(patente){
     let autoEncontrado = this.buscarAuto(patente)
@@ -46,16 +45,49 @@ const concesionaria = {
         autosVendidos.forEach(function(auto){
             lista.push(auto.precio)
         });
-        console.log(lista)
         return lista
     },
-
+    totalDeVentas: function(){
+        let Ventas = this.listaDeVentas()
+        if (Ventas.length>0){
+        let totalVentas = Ventas.reduce(function(acum,num){
+            return acum + num ;
+        })
+        return totalVentas
+      } else {  return 0
+    }
+    },
+    puedeComprar: function(autos,persona){
+        if (persona.capacidadDePagoTotal > autos.precio && persona.capacidadDePagoEnCuotas > (autos.precio/autos.cuotas)){
+            // console.log("true")
+            return true
+        } else {
+            // console.log("false") 
+            return false
+        };
+    },
+    autosQuePuedeComprar: function(persona){
+    //      1.Obtener los autos para la venta
+        let autos = this.autos
+    //      2.Probar cada auto. ¿puede comprarlo?   
+         let autosAccesibles = autos.filter(function(cadaAuto){
+             return this.puedeComprar(cadaAuto,persona) === true;
+         });
+         console.log(autosAccesibles)
+         return autosAccesibles
+    //      3.Devolver los que pueda comprar.
+    },
    autos: autos,
+   persona: persona,
 };
 
 
-concesionaria.venderAuto("JJK116")
+//concesionaria.venderAuto("JJK116")
+
 //console.log(autos)
+
 //concesionaria.autosParaLaVenta()
 
-concesionaria.listaDeVentas()
+// concesionaria.puedeComprar(autos[1],persona[0])
+
+concesionaria.autosQuePuedeComprar(persona[0])
