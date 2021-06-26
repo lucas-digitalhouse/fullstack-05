@@ -70,12 +70,16 @@ const concesionaria = {
     //      1.Obtener los autos para la venta
         let autos = this.autos
     //      2.Probar cada auto. ¿puede comprarlo?   
-         let autosAccesibles = autos.filter(function(cadaAuto){
+         let autosAccesibles = autos.filter( cadaAuto => {
              return this.puedeComprar(cadaAuto,persona) === true;
          });
          console.log(autosAccesibles)
          return autosAccesibles
     //      3.Devolver los que pueda comprar.
+   // Cuando utilizo el this.puedeComprar dentro del callback, lo tengo que hacer usando una array function, porque si lo uso de la otra manera, 
+   // no puedo acceder con el this. a una propiedad del objeto, fuera del callback. Si no quiero usar array function, tengo que llamarla
+   // con concecionaria.puedeComprar 
+
     },
    autos: autos,
    persona: persona,
